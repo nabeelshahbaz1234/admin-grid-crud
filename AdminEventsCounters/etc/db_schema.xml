@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="counter" resource="default" engine="innodb" comment="Counters">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Value ID"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" comment="Status"/>
+        <column xsi:type="text" name="title" nullable="false" comment="Title"/>
+        <column xsi:type="text" name="description" comment="Description"/>
+        <column xsi:type="text" name="store_view" comment="Store View"/>
+        <column xsi:type="decimal" name="latitude" scale="8" precision="10" comment="Latitude"/>
+        <column xsi:type="decimal" name="longitude" scale="8" precision="10" comment="Longitude"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="event" resource="default" engine="innodb" comment="Events">
+        <column xsi:type="int" name="event_id" padding="10" unsigned="false" nullable="false" identity="true" comment="Event ID"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false" default="0" comment="Counter ID"/>
+        <column xsi:type="varchar" name="event_name" nullable="false" length="255" comment="Event Name"/>
+        <column xsi:type="datetime" name="event_start_date" nullable="false" comment="Event Date"/>
+        <column xsi:type="datetime" name="event_end_date" nullable="false" comment="Event End Date"/>
+        <column xsi:type="datetime" name="start_time" nullable="false" comment="Event Start Time"/>
+        <column xsi:type="datetime" name="end_time" nullable="false" comment="Event End Time"/>
+        <!-- Add more event-related columns here -->
+        <column xsi:type="smallint" name="event_status" padding="5" unsigned="true" nullable="false" comment="Event Status"/>
+        <column xsi:type="varchar" name="event_title" nullable="false" length="255" comment="Event Title"/>
+        <column xsi:type="varchar" name="event_image" length="255" comment="Event Image"/>
+        <column xsi:type="text" name="cms_block" comment="CMS Block"/>
+        <column xsi:type="text" name="event_description" comment="Event Description"/>
+        <column xsi:type="text" name="store_view" comment="Store View"/>
+        <column xsi:type="varchar" name="url_key" length="255" comment="URL Key"/>
+        <column xsi:type="varchar" name="meta_title" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_keywords" comment="Meta Keywords"/>
+        <column xsi:type="text" name="meta_description" comment="Meta Description"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <!-- Add more event-related columns here -->
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="event_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_COUNTER_EVENT" table="event" column="entity_id" referenceTable="counter" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+</schema>

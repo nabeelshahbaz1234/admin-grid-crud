@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+<menu>
+    <add id="EGSolution_AdminEventsCounters::main_menu" title="EG Solution"
+         module="EGSolution_AdminEventsCounters" sortOrder="20"
+         resource="EGSolution_AdminEventsCounters::eg_solution" />
+    <add id="EGSolution_AdminEventsCounters::add_news" title="Content"
+         module="EGSolution_AdminEventsCounters" sortOrder="1" parent="EGSolution_AdminEventsCounters::main_menu"
+         action="counter/customform/index" resource="EGSolution_AdminEventsCounters::manage_news" />
+    <add id="EGSolution_AdminEventsCounters::manage_events" title="Manage Events"
+         module="EGSolution_AdminEventsCounters" sortOrder="2" parent="EGSolution_AdminEventsCounters::main_menu"
+         action="event/form/index" resource="EGSolution_AdminEventsCounters::manage_news" />
+    <add id="EGSolution_AdminEventsCounters::configuration" title="Configurations"
+         module="EGSolution_AdminEventsCounters" sortOrder="4" parent="EGSolution_AdminEventsCounters::main_menu"
+         action="adminhtml/system_config/edit/section/eg_solution"
+         resource="EGSolution_AdminEventsCounters::configuration" />
+</menu>
+</config>

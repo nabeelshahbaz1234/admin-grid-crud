@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="EGSolution\AdminEventsCounters\Api\EgCounterRepositoryInterface" type="EGSolution\AdminEventsCounters\Model\EgCounterRepository" />
+	<preference for="EGSolution\AdminEventsCounters\Api\Data\EgCounterInterface" type="EGSolution\AdminEventsCounters\Model\EgCounter"/>
+	<preference for="EGSolution\AdminEventsCounters\Api\Data\EgCounterInterfaceSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+	<virtualType name="EGSolution\AdminEventsCounters\Model\ResourceModel\Customform\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">counter</argument>
+			<argument name="resourceModel" xsi:type="string">EGSolution\AdminEventsCounters\Model\ResourceModel\EgCounter</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="contacts_test_listing_data_source" xsi:type="string">EGSolution\AdminEventsCounters\Model\ResourceModel\Customform\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+    <preference for="EGSolution\AdminEventsCounters\Api\EgCounterRepositoryInterface" type="EGSolution\AdminEventsCounters\Model\EgCounterRepository" />
+    <preference for="EGSolution\AdminEventsCounters\Api\EventRepositoryInterface" type="\EGSolution\AdminEventsCounters\Model\EventRepository"/>
+    <preference for="EGSolution\AdminEventsCounters\Api\Data\EventInterfaceSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <virtualType name="EGSolution\AdminEventsCounters\Model\ResourceModel\EventGrid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">event</argument>
+            <argument name="resourceModel" xsi:type="string">EGSolution\AdminEventsCounters\Model\ResourceModel\Event</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="event_test_listing_data_source" xsi:type="string">EGSolution\AdminEventsCounters\Model\ResourceModel\EventGrid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
